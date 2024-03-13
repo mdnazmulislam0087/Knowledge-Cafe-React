@@ -22,6 +22,8 @@ our on Click is in Blog ;
 
 Better React code snippet extension
 
+React developer tools chrome extension
+
 
 
 
