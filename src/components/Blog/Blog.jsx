@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 import { FaBookmark } from "react-icons/fa6";
 // import bookMark from '..//..//assets/book'
 
-const Blog = ({ blog, handleAddToBookmarks }) => {
+const Blog = ({ blog, handleAddToBookmarks, handleReadingTime }) => {
     const {title, cover, reading_time, author, author_img, posted_date, hashtags} = blog;
 
-    console.log(blog)
+    // console.log(blog)
+    // console.log(handleReadingTime)
     return (
         <div className='mb-20'>
             <img className="w-full mb-8" src={cover} alt={`cover picture of the title ${title}`} />
@@ -20,7 +21,7 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
                 </div>
                 <div>
                     <span>{reading_time} min read</span>
-                    <button onClick={handleAddToBookmarks}
+                    <button onClick={()=>handleAddToBookmarks(blog)}
                     className='ml-4 text-2xl text-red-600'><FaBookmark /></button>
                 </div>
             </div>
@@ -30,8 +31,10 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
             <p>
                 {
                     hashtags.map((hash, idx) => <span key = {idx}><a href="">#{hash}</a> </span>)
+                    
                 }
             </p>
+            <button onClick={() => handleReadingTime(reading_time)} className='text-blue-900 underline'>Mark as read</button>
 
 
         </div>
@@ -41,7 +44,8 @@ const Blog = ({ blog, handleAddToBookmarks }) => {
 Blog.propTypes = {
     // You can declare that a prop is a specific JS primitive. By default, these
     // are all optional.
-    blog: PropTypes.object.isRequired
+    blog: PropTypes.object.isRequired,
+    handleAddToBookmarks : PropTypes.func
 }
 
 export default Blog;
